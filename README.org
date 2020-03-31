@@ -25,6 +25,8 @@ This backend repository will host the code of an API only. The API will be built
 - Full-fledged User and Session management, including a registration workflow and password reset functionality
 - Support for multiple divisions, and some variation in the ranking system, including configurable points per victory / tie, configurable tie-breaking criteria.
 - A rich admin API providing at least team, division and schedule management.
+** Current status
+For some time to come, this app will likely be more of a Hello World demo than anything functional. I'll build on that slowly.
 ** Similar Solutions
 I know some exist. Some links coming later.
 ** Hosting
