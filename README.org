@@ -1,0 +1,37 @@
+* tmsrt-be
+** Background
+This repository will be the home of the backend component of a tournament ranking system I have been working on (on and off) for more than a decade.
+
+The app has been a pet learning project of mine, implemented (at least partly) in multiple technologies, including plain Python, Django and Rails.
+
+The current incarnation will be implemented with a JavaScript-based tech stack: ME(A)N. So the data will be in a Mongodb database, the whole thing will run on Node.js using Express as the backend framework.
+** Scope
+The app will be suitable for hosting a tournament with a Round Robin
+schedule and a related point-based ranking. I'll start off with
+something very simple and expand as needed. So I'll start with a
+single-division Round Robin solution.
+
+This backend repository will host the code of an API only. The API will be built gradually, with the initial plan outlined below: 
+*** First version (sometime in 2020)
+- Simple User & Session API that enables admin login for a single user (me)
+- An API for building a public tournament ranking website
+  - Game results
+  - Division rankings and all related tournament statistics (number of games played, won, lost, goals scored etc., points, etc...)
+- An Admin API for managing tournament data:
+  - Basic tournament info (name, location, ...)
+  - Game results (a hard-coded point calculation system, no configurability)
+  - Tournament schedule (tentative; may also start with hand-crafted schedule data straight from the database).
+*** Final Product (later on, maybe 2021)
+- Full-fledged User and Session management, including a registration workflow and password reset functionality
+- Support for multiple divisions, and some variation in the ranking system, including configurable points per victory / tie, configurable tie-breaking criteria.
+- A rich admin API providing at least team, division and schedule management.
+** Similar Solutions
+I know some exist. Some links coming later.
+** Hosting
+I won't be hosting a public version of the API anytime soon. Dev versions may be run on Heroku.
+** Front-end
+I'll build a companion web app using Angular. The repo does not exist yet as I'll start off with the backend. A link will be included here once the repo exists.
+** Notes
+Remember, this is a hobby project, and at any given time, the API may be completely broken, serve any kinds of mock data, or work in other mysterious ways. No guarantee whatsoever is given that the app will ever be ready for any serious use. 
+** Steps to Build and Run
+(Coming.)
