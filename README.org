@@ -4,7 +4,7 @@ This repository will be the home of the backend component of a tournament rankin
 
 The app has been a pet learning project of mine, implemented (at least partly) in multiple technologies, including plain Python, Django and Rails.
 
-The current incarnation will be implemented with a JavaScript-based tech stack: ME(A)N. So the data will be in a Mongodb database, the whole thing will run on Node.js using Express as the backend framework.
+The current incarnation will be implemented with a JavaScript-based tech stack: ME(A)N. So the data will be in a MongoDB database, and the whole thing will run on Node.js using Express as the backend framework.
 ** Scope
 The app will be suitable for hosting a tournament with a Round Robin
 schedule and a related point-based ranking. I'll start off with
