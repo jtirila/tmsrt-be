@@ -26,6 +26,7 @@ router.post('/', function(req, res, next) {
     // Beware, no error handling
     const tournament = new Tournament(newTournament);
     tournament.save().then(() => console.log('Tournament saved'));
+    res.status(201).json("");
 });
 
 
