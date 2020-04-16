@@ -31,7 +31,7 @@ let populate = function() {
         },
     ], handleError);
     
-    return res;
+    return;
 }
 
 populate();
