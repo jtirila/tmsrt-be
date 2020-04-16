@@ -1,13 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-// This is probably not the place for connecting to the database or defining the
-// models. Just trying things out for now.
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
-
-const tournamentSchema = new mongoose.Schema({name: String, location: String});
-const Tournament = mongoose.model('Tournament', tournamentSchema);
+const Tournament = require('../models/tournament');
 
 
 /* GET tournaments listing. */
