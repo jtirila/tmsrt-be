@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const tournamentSchema = mongoose.schema({
+const tournamentSchema = new mongoose.Schema({
     name: String,
     location: String,
     createdAt: {type: Date, default: Date.now },
