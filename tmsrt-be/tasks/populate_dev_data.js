@@ -12,11 +12,15 @@ let populate = function() {
     Tournament.create([
 	{
             name: "Pond Hockey 2021",
-            location: "Raksila"
+            location: "Raksila",
+	    startsAt: new Date(2021, 2, 21, 10, 00, 00),
+	    endsAt: new Date(2021, 2, 21, 16, 00, 00)
         },
 	{
             name: "Pond Hockey 2020",
-            location: "Linnanmaa"    
+            location: "Linnanmaa",
+            startsAt: new Date(2020, 2, 20, 11, 00, 00),
+	    endsAt: new Date(2020, 2, 20, 17, 00, 00)
         },
     ], handleError);
 
