@@ -5,7 +5,7 @@ const Team = require('../models/team.js');
 
 handle_error = err => console.log(`Error: ${err}`);
 
-let populate = function(mongoose) {
+let populate = function() {
     // This is probably not the place for connecting to the database or defining the
     // models. Just trying things out for now.
     const mongoose = require('mongoose');
