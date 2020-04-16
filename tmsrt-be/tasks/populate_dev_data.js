@@ -3,7 +3,7 @@ const Team = require('../models/team.js');
 
 
 
-handle_error = err => console.log(`Error: ${err}`);
+handleError = err => console.log(`Error: ${err}`);
 
 let populate = function() {
     // This is probably not the place for connecting to the database or defining the
