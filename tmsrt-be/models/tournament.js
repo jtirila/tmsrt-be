@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const tournamentSchema = mongoose.schema({
     name: String,
-    location: String
+    location: String,
+    createdAt: {type: Date, default: Date.now },
+    updatedAt: {type: Date, default: Date.now },
+    startsAt: {type: Date, default: Date.now },
+    endsAt: {type: Date, default: Date.now }
 });
 
 const Tournament = mongoose.model("Tournament", tournamentSchema);
