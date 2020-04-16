@@ -31,6 +31,7 @@ For some time to come, this app will likely be more of a Hello World demo than a
 Some things I'll be thinking about (not necessarily writing code straight away):
 - Node.js / Express idiomatic Ways to populate the database with mock data suitable for development. Some options include a standalone JS Script, one written in Jake, and maybe using MongoPop, but I'm not sure what is the best way to proceed.
   - Looks like this could be useful: https://stackoverflow.com/questions/44427563/what-is-the-best-way-to-seed-data-in-nodejs-mongoose
+- A robust workflow for deleting all documents in the Mongo database, and starting over (related to the previous point)
 ** Similar Solutions
 I know some exist. Some links coming later.
 ** Hosting
