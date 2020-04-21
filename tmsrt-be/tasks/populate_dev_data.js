@@ -10,41 +10,40 @@ let populate = async function() {
     const mongoose = require('mongoose');
     mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-    let pondhockey21 = null;
-    await Tournament.create(
+    pondhoc21 =  new Tournament(
 	{name: "Pond Hockey 2021",
          location: "Raksila",
 	 startsAt: new Date(2021, 2, 21, 10, 00, 00),
-	 endsAt: new Date(2021, 2, 21, 16, 00, 00)}, (err, pondhoc21) => {
+	 endsAt: new Date(2021, 2, 21, 16, 00, 00)});
+
+    await pondhoc21.save(err => {
 	     if(err) return handleError(err, "pondhoc21");
-	     pondhockey21 = pondhoc;
+    });
 
-	 });
-
-    await Tournament.create(
+    pondhoc20 = new Tournament(
 	{name: "Pond Hockey 2020",
          location: "Linnanmaa",
 	 startsAt: new Date(2020, 3, 21, 11, 00, 00),
-	 endsAt: new Date(2020, 3, 21, 17, 00, 00)}, (err, pondhoc21) => {
-	     if(err) return handleError(err, "pondhoc20");
-	     pondhockey21 = pondhoc;
-	 });    
-    let burritos = null;
-    let burgers = null;
-        await Team.create({name: "Burritos"}, (err, burr) => {
-	if(err) return handleError(err, "burr");
-	burritos = burr;
+	 endsAt: new Date(2020, 3, 21, 17, 00, 00)});
+    await pondhoc20.save(err => {
+        if(err) return handleError(err, "pondhoc20");
+    });    
+
+    burritos = new Team({name: "Burritos"});
+    await burritos.save(err => {
+        if(err) return handleError(err, "burr");
     });
-    await Team.create({name: "Burgers"}, (err, burg) => {
-	if(err) return handleError(err, "burg");
-	burgers = burg;
+    burgers = new Team({name: "Burgers"});
+    await burgers.save(err => {
+        if(err) return handleError(err, "burg");
     });
     let gameStartsAt = new Date(2020, 2, 20, 17, 00, 00);
     let gameEndsAt = new Date(2020, 2, 20, 17, 30, 00);
-    await Game.create({homeTeam: burritos, roadTeam: burgers, startsAt: gameStartsAt, endsAt: gameEndsAt}, (err, game) => {
+    console.log(`burritos id: ${burritos._id}`);
+    await Game.create({tournament: pondhoc20._id, homeTeam: burritos._id, roadTeam: burgers._id, startsAt: gameStartsAt, endsAt: gameEndsAt}, (err, game) => {
 	if(err) handleError(err, "game");
     });
-    return;
+    // TODO: figure out how to properly exit the script, see e.g. https://stackoverflow.com/questions/52461119/javascript-exit-script-after-async-function
 }
 
 populate();
