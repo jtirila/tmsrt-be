@@ -32,12 +32,13 @@ Some things I'll be thinking about (not necessarily writing code straight away):
 - Node.js / Express idiomatic Ways to populate the database with mock data suitable for development. Some options include a standalone JS Script, one written in Jake, and maybe using MongoPop, but I'm not sure what is the best way to proceed.
   - Looks like this could be useful: https://stackoverflow.com/questions/44427563/what-is-the-best-way-to-seed-data-in-nodejs-mongoose
 - A robust workflow for deleting all documents in the Mongo database, and starting over (related to the previous point)
+  - Then again, as the db is hosted on MLab, there is a button for deleting everything so maybe that'll do for now.
 ** Similar Solutions
 I know some exist. Some links coming later.
 ** Hosting
 I won't be hosting a public version of the API anytime soon. Dev versions may be run on Heroku.
 ** Front-end
-I'll build a companion web app using Angular. The repo does not exist yet as I'll start off with the backend. A link will be included here once the repo exists.
+I'll build a companion web app using Angular. Some very early steps into this direction have been taken, and the work lives in the tmsrt-fe repo.
 ** Notes
 Remember, this is a hobby project, and at any given time, the API may be completely broken, serve any kinds of mock data, or work in other mysterious ways. No guarantee whatsoever is given that the app will ever be ready for any serious use. 
 ** Steps to Build and Run
