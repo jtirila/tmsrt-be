@@ -10,7 +10,7 @@ let populate = async function() {
     const mongoose = require('mongoose');
     mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-    pondhoc21 =  new Tournament(
+    const pondhoc21 =  new Tournament(
 	{name: "Pond Hockey 2021",
          location: "Raksila",
 	 startsAt: new Date(2021, 2, 21, 10, 00, 00),
@@ -20,7 +20,7 @@ let populate = async function() {
 	     if(err) return handleError(err, "pondhoc21");
     });
 
-    pondhoc20 = new Tournament(
+    const pondhoc20 = new Tournament(
 	{name: "Pond Hockey 2020",
          location: "Linnanmaa",
 	 startsAt: new Date(2020, 3, 21, 11, 00, 00),
@@ -29,11 +29,11 @@ let populate = async function() {
         if(err) return handleError(err, "pondhoc20");
     });    
 
-    burritos = new Team({name: "Burritos"});
+    const burritos = new Team({name: "Burritos"});
     await burritos.save(err => {
         if(err) return handleError(err, "burr");
     });
-    burgers = new Team({name: "Burgers"});
+    const burgers = new Team({name: "Burgers"});
     await burgers.save(err => {
         if(err) return handleError(err, "burg");
     });
@@ -44,6 +44,7 @@ let populate = async function() {
 	if(err) handleError(err, "game");
     });
     // TODO: figure out how to properly exit the script, see e.g. https://stackoverflow.com/questions/52461119/javascript-exit-script-after-async-function
+    // process.exit(0); // This doesn't work
 }
 
 populate();
