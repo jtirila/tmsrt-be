@@ -2,13 +2,17 @@ const Tournament = require('../models/tournament.js');
 const Team = require('../models/team.js');
 const Game = require('../models/game.js');
 
-let handleError = (err, msg) => console.log(`Error: ${err}`);
+
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 let populate = async function() {
+    let handleError = (err, msg) => {
+	console.log(`Error: ${err}`);
+    };
+
     // This is probably not the place for connecting to the database or defining the
     // models. Just trying things out for now.
-    const mongoose = require('mongoose');
-    mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
     const pondhoc21 =  new Tournament(
 	{name: "Pond Hockey 2021",
@@ -17,7 +21,10 @@ let populate = async function() {
 	 endsAt: new Date(2021, 2, 21, 16, 00, 00)});
 
     await pondhoc21.save(err => {
-	     if(err) return handleError(err, "pondhoc21");
+ 	if(err) {
+	    handleError(err, "pondhoc21");
+	    return "error";
+	}
     });
 
     const pondhoc20 = new Tournament(
@@ -26,25 +33,44 @@ let populate = async function() {
 	 startsAt: new Date(2020, 3, 21, 11, 00, 00),
 	 endsAt: new Date(2020, 3, 21, 17, 00, 00)});
     await pondhoc20.save(err => {
-        if(err) return handleError(err, "pondhoc20");
+ 	if(err) {
+	    handleError(err, "pondhoc21");
+	    return "error";
+	}
     });    
 
     const burritos = new Team({name: "Burritos"});
     await burritos.save(err => {
         if(err) return handleError(err, "burr");
+	return "error";
     });
     const burgers = new Team({name: "Burgers"});
     await burgers.save(err => {
-        if(err) return handleError(err, "burg");
+        if(err) {
+	    handleError(err, "burg");
+	    return "error";
+	}
     });
     let gameStartsAt = new Date(2020, 2, 20, 17, 00, 00);
     let gameEndsAt = new Date(2020, 2, 20, 17, 30, 00);
-    console.log(`burritos id: ${burritos._id}`);
-    await Game.create({tournament: pondhoc20._id, homeTeam: burritos._id, roadTeam: burgers._id, startsAt: gameStartsAt, endsAt: gameEndsAt}, (err, game) => {
-	if(err) handleError(err, "game");
+
+    let game = new Game({tournament: pondhoc20._id,
+			 homeTeam: burritos._id, roadTeam: burgers._id,
+			 startsAt: gameStartsAt, endsAt: gameEndsAt});
+    await game.save(err => {
+	if(err) {
+	    handleError(err, "game");
+	    return "error";
+	}
     });
-    // TODO: figure out how to properly exit the script, see e.g. https://stackoverflow.com/questions/52461119/javascript-exit-script-after-async-function
-    // process.exit(0); // This doesn't work
+    return "done";
 }
 
-populate();
+populate().then((res) => {
+    console.log(`Got: ${res}`);
+    /* Figure out a way to cleanly exit from this script.
+       process.exit(0) or mongoose.disconnect /
+       mongoose.connection.close() don't seem to work.  Currently need
+       to Ctrl-C after a while, but this is probably unsafe and in any
+       case ugly. */
+});
