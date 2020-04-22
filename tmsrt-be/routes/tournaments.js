@@ -22,5 +22,11 @@ router.post('/', function(req, res, next) {
     res.status(201).json("");
 });
 
+router.get('/:tournamentId', function(req, res, next) {
+    Tournament.findById(req.params["tournamentId"], (err, tournament) => {
+	if(err) res.status(404).json("");
+	res.status(200).json(tournament);
+    });
+});
 
 module.exports = router;
