@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Tournament = require('../models/tournament');
+const Team = require('../models/team');
 
 
 /* GET tournaments listing. */
@@ -13,7 +14,6 @@ router.get('/', function(req, res, next) {
 
 });
 
-
 router.post('/', function(req, res, next) {
     const newTournament = req.body;
     // Beware, no error handling
@@ -23,10 +23,13 @@ router.post('/', function(req, res, next) {
 });
 
 router.get('/:tournamentId', function(req, res, next) {
-    Tournament.findById(req.params["tournamentId"], (err, tournament) => {
-	if(err) res.status(404).json("");
-	res.status(200).json(tournament);
-    });
+    Tournament.findById(req.params["tournamentId"]).
+	populate('games.homeTeam').
+	populate('games.roadTeam').
+	exec((err, tournament) => {
+	  if(err) res.status(404).json("");
+          res.status(200).json(tournament);
+	});
 });
 
 module.exports = router;

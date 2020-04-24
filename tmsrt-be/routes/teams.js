@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Team = require('../models/team');
 
-/* GET tournaments listing. */
+/* GET teams listing. */
 router.get('/', function(req, res, next) {
     // FIXME
     Team.find((err, docs) => {
